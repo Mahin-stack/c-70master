@@ -1,47 +1,48 @@
 import React from 'react';
-import { StyleSheet, Text, View } from 'react-native';
+import { StyleSheet, Text, View, Image } from 'react-native';
 import {createAppContainer} from 'react-navigation';
-import {createBottomTabNavigator} from 'react-navigation-tabs';
-import ReadStoryScreen from './screens/ReadStoryScreen';
-import WriteStoryScreen from './screens/WriteStoryScreen';
+import {createBottomTabNavigator} from 'react-navigation-tabs' 
+import WriteStoryScreen from './screens/WriteStoryScreen'
+import ReadStoryScreen from './screens/ReadStoryScreen'
 
-export default class App extends React.Component{
+export default class App extends React.Component {
   render(){
-  return (
-    <View>
-      <AppContainer/>
-    </View>
-  );
+    return(
+      <AppContainer />
+    );
+  }
 }
-}
-const TabNavigator= createBottomTabNavigator({
-  Write: WriteStoryScreen,
-  Read:ReadStoryScreen,
+
+const TabNavigator = createBottomTabNavigator({
+  WriteStory: WriteStoryScreen,
+  ReadStory: ReadStoryScreen
 },
 {
   defaultNavigationOptions: ({navigation})=>({
-  tabBarIcon: ({})=>{
-                     // variable navigation
-    const routeName = navigation.state.routeName
-    if(routeName=== 'WriteStory'){
-      return(
-        <Image
-        source={require('./assets/write.png')}
-        style={{width:50, height: 50}}
-        />
-      )
-    }
-    else if(routeName=== 'ReadStory'){
-      return(
-        <Image
-        source={require('./assets/read.png')}
-      style={{width: 50, height: 50}}
+    tabBarIcon: ()=>{
+      const routeName = navigation.state.routeName;
+      
+      if(routeName === "WriteStory"){
+        return(
+          <Image
+          source={require("./assets/write.png")}
+          style={{width:40, height:40}}
         />
         )
+        
+      }
+      else if(routeName === "ReadStory"){
+        return(
+          <Image
+          source={require("./assets/read.png")}
+          style={{width:40, height:40}}
+        />)
+        
+      }
     }
-  }
   })
-  })
+}
+  )
 
 const AppContainer = createAppContainer(TabNavigator);
 
